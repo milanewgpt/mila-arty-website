@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mila Arty - Web3 Ambassador</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px 80px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid #3b82f6;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+            object-fit: cover;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        .hero-text {
+            text-align: left;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #60a5fa;
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            max-width: 600px;
+            margin: 0 auto;
+            animation: slideDown 1.2s ease-out;
+        }
+
+        /* About Section */
+        .about {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 60px 40px;
+            margin: 40px 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .about h3 {
+            font-size: 2rem;
+            color: #3b82f6;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .about p {
+            font-size: 1.05rem;
+            color: #d0d0d0;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Skills Section */
+        .skills {
+            padding: 60px 20px;
+            animation: fadeIn 1.8s ease-in;
+        }
+
+        .skills h3 {
+            font-size: 2rem;
+            color: #3b82f6;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.3);
+            border-color: rgba(59, 130, 246, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .skill-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .skill-card h4 {
+            font-size: 1.3rem;
+            color: #60a5fa;
+            margin-bottom: 15px;
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
+            color: #b0b0b0;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .contact h3 {
+            font-size: 2rem;
+            color: #3b82f6;
+            margin-bottom: 40px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 30px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid #3b82f6;
+            border-radius: 50px;
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: rgba(59, 130, 246, 0.2);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 2px solid #3b82f6;
+            border-radius: 50%;
+            color: #3b82f6;
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #3b82f6;
+            color: #ffffff;
+            transform: scale(1.15) rotate(8deg);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #808080;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
+            .hero-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .about {
+                padding: 40px 25px;
+            }
+
+            .about h3,
+            .contact h3,
+            .skills h3 {
+                font-size: 1.6rem;
+            }
+
+            .about p {
+                font-size: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .skill-card {
+                padding: 25px;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .contact-link {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .social-links {
+                gap: 15px;
+            }
+
+            .social-link {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 15px 50px;
+            }
+
+            .hero-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <img src="https://i.pravatar.cc/300?img=45" alt="Mila Arty" class="hero-image">
+                <div class="hero-text">
+                    <h1>Mila Arty</h1>
+                    <h2>Web3 Ambassador</h2>
+                </div>
+            </div>
+            <p>Bridging the gap between Web3 technology and mainstream adoption. Passionate about blockchain innovation, decentralized systems, and empowering communities through education.</p>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <h3>About Me</h3>
+            <p>
+                Hello! I'm a Web3 Ambassador dedicated to promoting blockchain technology and decentralized solutions. 
+                With a deep understanding of cryptocurrency, NFTs, DeFi, and DAOs, I help bridge the knowledge gap 
+                between complex Web3 concepts and everyday users.
+            </p>
+            <p>
+                My mission is to educate and empower communities about the transformative potential of blockchain 
+                technology. I organize workshops, create educational content, and collaborate with innovative Web3 
+                projects to drive mainstream adoption and understanding.
+            </p>
+            <p>
+                I'm passionate about the future of decentralized internet and believe in the power of community-driven 
+                innovation. Whether it's explaining smart contracts, guiding newcomers through their first wallet setup, 
+                or discussing the latest developments in the space, I'm here to make Web3 accessible to everyone.
+            </p>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills">
+            <h3>My Skills</h3>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <span class="skill-icon">🔗</span>
+                    <h4>Blockchain Technology</h4>
+                    <p>Deep understanding of blockchain fundamentals, consensus mechanisms, and distributed ledger technology.</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">💎</span>
+                    <h4>NFTs & Digital Assets</h4>
+                    <p>Expertise in NFT ecosystems, marketplaces, and the future of digital ownership and collectibles.</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🏦</span>
+                    <h4>DeFi Protocols</h4>
+                    <p>Knowledge of decentralized finance, yield farming, liquidity pools, and DeFi governance models.</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🤝</span>
+                    <h4>Community Building</h4>
+                    <p>Building and nurturing engaged Web3 communities through education, events, and authentic connections.</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">📱</span>
+                    <h4>Web3 Education</h4>
+                    <p>Creating accessible content and workshops to onboard newcomers into the decentralized web ecosystem.</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🚀</span>
+                    <h4>Project Collaboration</h4>
+                    <p>Partnering with innovative Web3 projects to drive adoption, growth, and community engagement.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact">
+            <h3>Contact</h3>
+            <div class="contact-links">
+                <a href="mailto:mila.arty@example.com" class="contact-link">
+                    <span>📧</span>
+                    <span>mila.arty@example.com</span>
+                </a>
+            </div>
+            
+            <div class="social-links">
+                <a href="https://github.com/milaarty" class="social-link" target="_blank" rel="noopener" title="GitHub">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/in/milaarty" class="social-link" target="_blank" rel="noopener" title="LinkedIn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                </a>
+                <a href="https://t.me/milaarty" class="social-link" target="_blank" rel="noopener" title="Telegram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                </a>
+                <a href="https://twitter.com/milaarty" class="social-link" target="_blank" rel="noopener" title="Twitter">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                    </svg>
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Mila Arty. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
