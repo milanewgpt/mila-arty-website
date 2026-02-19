@@ -4,9 +4,12 @@ Personal business card website for **Mila Arty**, a Web3 Ambassador and blockcha
 
 ## 🌐 Live Demo
 
-🔗 **[https://milanewgpt.github.io/mila-arty-website/](https://milanewgpt.github.io/mila-arty-website/)**
+| Platform | URL |
+|----------|-----|
+| 🔷 Vercel | **[https://mila-site.vercel.app](https://mila-site.vercel.app)** |
+| 📄 GitHub Pages | **[https://milanewgpt.github.io/mila-arty-website/](https://milanewgpt.github.io/mila-arty-website/)** |
 
-> Hosted on GitHub Pages — auto-deploys on every push to `master`.
+> Auto-deploys on every push to `master` via both Vercel and GitHub Pages.
 
 ## 📋 About
 
