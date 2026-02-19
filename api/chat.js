@@ -172,7 +172,7 @@ module.exports = async function handler(req, res) {
     log('ERROR', 'Request failed', { requestId, error: err.message, stack: err.stack });
     return res.status(500).json({
       error: 'Failed to get AI response',
-      details: process.env.NODE_ENV === 'development' ? err.message : undefined
+      details: err.message
     });
   }
 };
