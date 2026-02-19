@@ -60,3 +60,8 @@ yarn-debug.log*
 # Misc
 # ===========================
 TODO.md
+.vercel
+TODO_chatbot.md 
+_merge.ps1 
+_tail.html 
+!.env.example 
