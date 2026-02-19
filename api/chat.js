@@ -65,20 +65,26 @@ function log(level, message, data) {
 async function callMiniMax(message, apiKey) {
   log('INFO', 'Calling MiniMax API', { messageLength: message.length });
 
+  // Use OpenAI-compatible format (MiniMax standard)
   const requestBody = {
-    model: 'MiniMax-M2.5',
-    messages: [{ role: 'user', content: message }],
+    model: 'MiniMax-Text-01',
+    messages: [
+      { role: 'system', content: SYSTEM_PROMPT },
+      { role: 'user', content: message }
+    ],
     max_tokens: 500,
-    temperature: 0.7,
-    system: SYSTEM_PROMPT
+    temperature: 0.7
   };
 
   log('DEBUG', 'Request body', { model: requestBody.model, max_tokens: requestBody.max_tokens });
 
-  const response = await fetch('https://api.minimax.io/anthropic/v1/messages', {
+  // Trim key to remove any accidental newlines
+  const cleanKey = apiKey.trim();
+
+  const response = await fetch('https://api.minimax.io/v1/text/chatcompletion_v2', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${apiKey}`,
+      'Authorization': `Bearer ${cleanKey}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(requestBody)
@@ -97,12 +103,12 @@ async function callMiniMax(message, apiKey) {
   }
 
   log('DEBUG', 'MiniMax response data', {
-    stopReason: data.stop_reason,
-    inputTokens: data.usage?.input_tokens,
-    outputTokens: data.usage?.output_tokens
+    finishReason: data.choices?.[0]?.finish_reason,
+    totalTokens: data.usage?.total_tokens
   });
 
-  const content = data?.content?.[0]?.text;
+  // OpenAI-compatible response format
+  const content = data?.choices?.[0]?.message?.content;
   if (!content) {
     log('ERROR', 'Empty content in MiniMax response', { data });
     throw new Error('Empty response from MiniMax API');
