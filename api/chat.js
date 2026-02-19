@@ -108,10 +108,16 @@ async function callMiniMax(message, apiKey) {
   });
 
   // OpenAI-compatible response format
+  // MiniMax returns base_resp.status_code 1008 = insufficient balance
+  if (data?.base_resp?.status_code && data.base_resp.status_code !== 0) {
+    log('ERROR', 'MiniMax base_resp error', { status_code: data.base_resp.status_code, status_msg: data.base_resp.status_msg });
+    throw new Error(`MiniMax error ${data.base_resp.status_code}: ${data.base_resp.status_msg}`);
+  }
+
   const content = data?.choices?.[0]?.message?.content;
   if (!content) {
     log('ERROR', 'Empty content in MiniMax response', { data });
-    throw new Error(`Empty response from MiniMax API. Full response: ${JSON.stringify(data)}`);
+    throw new Error('Empty response from MiniMax API');
   }
 
   log('INFO', 'MiniMax API call successful', { responseLength: content.length });
