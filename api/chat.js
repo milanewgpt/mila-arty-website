@@ -111,7 +111,7 @@ async function callMiniMax(message, apiKey) {
   const content = data?.choices?.[0]?.message?.content;
   if (!content) {
     log('ERROR', 'Empty content in MiniMax response', { data });
-    throw new Error('Empty response from MiniMax API');
+    throw new Error(`Empty response from MiniMax API. Full response: ${JSON.stringify(data)}`);
   }
 
   log('INFO', 'MiniMax API call successful', { responseLength: content.length });
